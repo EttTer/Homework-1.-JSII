@@ -42,7 +42,7 @@ fetch('https://apps.kodim.cz/daweb/trening-api/apis/tasks-api/tasks')
 
 //Tohle po kliku vyfiltruje všechny neudělané
 
-/*let checked = document.querySelector(".todo__filter");
+let checked = document.querySelector(".todo__filter");
 checked.addEventListener("click", (event)=>{
     fetch('https://apps.kodim.cz/daweb/trening-api/apis/tasks-api/tasks?done=false')
     .then((response)=> {
@@ -50,14 +50,22 @@ checked.addEventListener("click", (event)=>{
     })
     .then(renderTasks);
 
-});*/
+});
+// A tohle vrátí zpět celý seznam
+checked.addEventListener("click", (event)=>{
+    fetch('https://apps.kodim.cz/daweb/trening-api/apis/tasks-api/tasks')
+    .then((response)=> {
+        return response.json();
+    })
+    .then(renderTasks);
 
+});
 
 
 
 //-----dosud všechno OK------
 
-let checkbox= document.querySelector(".todo__filter");
+/*let checkbox= document.querySelector(".todo__filter");
 
 checkbox.addEventListener('change', (event) => {
 
@@ -75,8 +83,7 @@ checkbox.addEventListener('change', (event) => {
         })
         .then(renderTasks);
   };
-});
-
+});*/
 
 
 
