@@ -42,7 +42,7 @@ fetch('https://apps.kodim.cz/daweb/trening-api/apis/tasks-api/tasks')
 
 //Tohle po kliku vyfiltruje všechny neudělané
 
-let checked = document.querySelector(".todo__filter");
+/*let checked = document.querySelector(".todo__filter");
 checked.addEventListener("click", (event)=>{
     fetch('https://apps.kodim.cz/daweb/trening-api/apis/tasks-api/tasks?done=false')
     .then((response)=> {
@@ -59,11 +59,33 @@ checked.addEventListener("click", (event)=>{
     })
     .then(renderTasks);
 
+});*/
+
+//Druhé možné řešení
+let checkbox = document.querySelector(".todo__filter")
+checkbox.addEventListener("click", (event)=> {
+      const checkboxDone= event.target;
+    
+      if (checkboxDone.checked) {fetch('https://apps.kodim.cz/daweb/trening-api/apis/tasks-api/tasks?done=false')
+      .then((response)=> {
+          return response.json();
+      })
+      .then(renderTasks);
+
+      }
+  else {fetch('https://apps.kodim.cz/daweb/trening-api/apis/tasks-api/tasks')
+  .then((response)=> {
+      return response.json();
+  })
+  .then(renderTasks);
+  }
 });
 
 
-
 //-----dosud všechno OK------
+
+
+
 
 /*let checkbox= document.querySelector(".todo__filter");
 
@@ -84,50 +106,3 @@ checkbox.addEventListener('change', (event) => {
         .then(renderTasks);
   };
 });*/
-
-
-
-/*checked.addEventListener("click", (event)=>{ 
- 
-
- fetch('https://apps.kodim.cz/daweb/trening-api/apis/tasks-api/tasks?done=false')
-.then((response)=> {
-    return response.json();
-})
-.then(renderTasks);
-
-});*/
-
-
-
-
-/*checked.click(()=>{
-    fetch('https://apps.kodim.cz/daweb/trening-api/apis/tasks-api/tasks')
-    .then((response)=> {
-        return response.json();
-    })
-    .then(renderTasks);
-
-});*/
-
-
-/*const renderTasks = (tasks) => {
-    const taskElm = document.querySelector(".task__done");
-    taskElm.innerHTML= tasks
-    .map((t) => Task(t))
-    .join("");
-};
-
-
-fetch(`https://apps.kodim.cz/daweb/trening-api/apis/tasks-api/tasks?done=false`)
-  .then((response) => {
-    response.json();
-  })
-    .then(renderTasks);
-
-
-  /*  fetch(`https://apps.kodim.cz/daweb/trening-api/apis/emails?folder=unread`)
-    .then((response) => {
-      response.json();
-    })
-      .then((data) => console.log(data));*/
